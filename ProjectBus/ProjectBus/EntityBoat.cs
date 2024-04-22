@@ -1,8 +1,8 @@
-﻿namespace ProjectBus;
+﻿namespace ProjectBoat;
 /// <summary>
 /// Класс-сущность "автобус"
 /// </summary>
-public class EntityBus
+public class EntityBoat
 {
     //свойства
     /// <summary>
@@ -24,15 +24,15 @@ public class EntityBus
     /// <summary>
     /// Признак (опция) наличие второго этажа
     /// </summary>
-    public bool SecondFloor { get; private set; }
+    public bool Motor { get; private set; }
     /// <summary>
     /// Признак (опция) наличие лестницы
     /// </summary>
-    public bool Ladder { get; private set; }
+    public bool Oars { get; private set; }
     /// <summary>
     /// Признак (опция) наличие фар
     /// </summary>
-    public bool Headlights { get; private set; }
+    public bool Glass { get; private set; }
     //поле класса
     /// <summary>
     /// Шаг перемещения автомобиля
@@ -45,18 +45,18 @@ public class EntityBus
     /// <param name="weight">вес</param>
     /// <param name="bodyColor">основной цвет</param>
     /// <param name="additionalColor">дополнительный цвет</param>
-    /// <param name="secondFloor">второй этаж</param>
-    /// <param name="ladder">лестница</param>
-    /// <param name="headlights">наличие фар</param>
+    /// <param name="motor">второй этаж</param>
+    /// <param name="oars">лестница</param>
+    /// <param name="glass">наличие фар</param>
     public void Init(int speed, double weight, Color bodyColor, Color
-    additionalColor, bool secondFloor, bool ladder, bool headlights)
+    additionalColor, bool motor, bool oars, bool glass)
     {
         Speed = speed;
         Weight = weight;
         BodyColor = bodyColor;
         AdditionalColor = additionalColor;
-        SecondFloor = secondFloor;
-        Ladder = ladder;
-        Headlights = headlights;
+        Motor = motor;
+        Oars = oars;
+        Glass = glass;
     }
 }

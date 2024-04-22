@@ -1,4 +1,4 @@
-﻿namespace ProjectBus;
+﻿namespace ProjectBoat;
 /// <summary>
 /// Направление перемещения
 /// </summary>
