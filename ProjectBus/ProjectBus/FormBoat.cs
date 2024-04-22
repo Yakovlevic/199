@@ -15,6 +15,25 @@ namespace ProjectBoat
         /// </summary>
         private AbstractStrategy? _strategy;
 
+        /// <summary>
+        /// Получение объекта
+        /// </summary>
+        public DrawningBoat SetBoat
+        {
+            set
+            {
+                _drawningBoat = value;
+                _drawningBoat.SetPictureSize(pictureBoxBoat.Width,
+                pictureBoxBoat.Height);
+                comboBoxStrategy.Enabled = true;
+                _strategy = null;
+                Draw();
+            }
+        }
+
+        /// <summary>
+        /// Конструктор формы
+        /// </summary>
         public FormBoat()
         {
             InitializeComponent();
@@ -53,16 +72,13 @@ namespace ProjectBoat
             switch (name)
             {
                 case "buttonUp":
-                    result =
-                    _drawningBoat.MoveTransport(DirectionType.Up);
+                    result = _drawningBoat.MoveTransport(DirectionType.Up);
                     break;
                 case "buttonDown":
-                    result =
-                    _drawningBoat.MoveTransport(DirectionType.Down);
+                    result = _drawningBoat.MoveTransport(DirectionType.Down);
                     break;
                 case "buttonLeft":
-                    result =
-                    _drawningBoat.MoveTransport(DirectionType.Left);
+                    result = _drawningBoat.MoveTransport(DirectionType.Left);
                     break;
                 case "buttonRight":
                     result =
