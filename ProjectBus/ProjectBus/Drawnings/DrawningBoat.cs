@@ -1,8 +1,7 @@
-﻿using ProjectBoat;
+using ProjectBoat.Entities;
 using System.Drawing.Drawing2D;
-using System.Security.Cryptography.Xml;
 
-namespace ProjectBoat;
+namespace ProjectBoat.Drawnings;
 /// <summary>
 /// Класс, отвечающий за прорисовку и перемещение объекта-сущности
 /// </summary>
@@ -11,7 +10,7 @@ public class DrawningBoat
     /// <summary>
     /// Класс-сущность
     /// </summary>
-    public EntityBoat? EntityBoat { get; private set; }
+    public EntityBoat? EntityBoat { get; protected set; }
     /// <summary>
     /// Ширина окна
     /// </summary>
@@ -23,11 +22,11 @@ public class DrawningBoat
     /// <summary>
     /// Левая координата прорисовки автомобиля
     /// </summary>
-    private int? _startPosX;
+    protected int? _startPosX;
     /// <summary>
     /// Верхняя кооридната прорисовки автомобиля
     /// </summary>
-    private int? _startPosY;
+    protected int? _startPosY;
 
     /// <summary>
     /// Ширина прорисовки крейсера
@@ -38,28 +37,56 @@ public class DrawningBoat
     /// </summary>
     private readonly int _drawningBoatHeight = 50;
     private readonly int _drawningEnginesWidth = 3;
-    /// <summary>
-    /// Инициализация свойств
-    /// </summary>
-    /// <param name="speed">Скорость</param>
-    /// <param name="weight">Вес</param>
-    /// <param name="bodyColor">Основной цвет</param>
-    /// <param name="additionalColor">Дополнительный цвет</param>
-    /// <param name="motor">Признак наличия вертолетной площадки</param>
-    /// <param name="boat">Признак наличия шлюпок</param>
-    /// <param name="glass">Признак наличия пушки</param>
 
-    public void Init(int speed, double weight, Color bodyColor, Color
-    additionalColor, bool motor, bool boat, bool glass)
+    /// <summary>
+    /// Координата X объекта
+    /// </summary>
+    public int? GetPosX => _startPosX;
+    /// <summary>
+    /// Координата Y объекта
+    /// </summary>
+    public int? GetPosY => _startPosY;
+    /// <summary>
+    /// Ширина объекта
+    /// </summary>
+    public int GetWidth => _drawningBoatWidth;
+    /// <summary>
+    /// Высота объекта
+    /// </summary>
+    public int GetHeight => _drawningBoatHeight;
+
+    /// <summary>
+    /// Пустой онструктор
+    /// </summary>
+    private DrawningBoat()
     {
-        EntityBoat = new EntityBoat();
-        EntityBoat.Init(speed, weight, bodyColor, additionalColor,
-        motor, boat, glass);
         _pictureWidth = null;
         _pictureHeight = null;
         _startPosX = null;
         _startPosY = null;
     }
+
+    /// <summary>
+    /// Конструктор
+    /// </summary>
+    /// <param name="speed">Скорость</param>
+    /// <param name="weight">Вес</param>
+    /// <param name="bodyColor">Основной цвет</param>
+    public DrawningBoat(int speed, double weight, Color bodyColor) : this()
+    {
+        EntityBoat = new EntityBoat(speed, weight, bodyColor);
+    }
+    /// <summary>
+    /// Конструктор для наследников
+    /// </summary>
+    /// <param name="drawningCarWidth">Ширина прорисовки автомобиля</param>
+    /// <param name="drawningCarHeight">Высота прорисовки автомобиля</param>
+    protected DrawningBoat(int drawningCarWidth, int drawningCarHeight) : this()
+    {
+        _drawningBoatWidth = drawningCarWidth;
+        _pictureHeight = drawningCarHeight;
+    }
+
     /// <summary>
     /// Установка границ поля
     /// </summary>
@@ -161,7 +188,7 @@ public class DrawningBoat
     /// Прорисовка объекта
     /// </summary>
     /// <param name="g"></param>
-    public void DrawTransport(Graphics g)
+    public virtual void DrawTransport(Graphics g)
     {
         if (EntityBoat == null || !_startPosX.HasValue ||
         !_startPosY.HasValue)
@@ -171,9 +198,7 @@ public class DrawningBoat
         Pen pen = new(EntityBoat.BodyColor, 2);
         Brush motorBrush = new SolidBrush(Color.Black);
         Brush glassBrush = new SolidBrush(Color.Blue);
-        Brush glassBrush2 = new SolidBrush(EntityBoat.AdditionalColor);
-        Brush oarsBrush = new HatchBrush(HatchStyle.ZigZag, EntityBoat.AdditionalColor, Color.FromArgb(163, 163, 163));
-        Brush additionalBrush = new SolidBrush(EntityBoat.AdditionalColor);
+        
 
         //границы круисера
         g.DrawLine(pen, _startPosX.Value, _startPosY.Value, _startPosX.Value + 105, _startPosY.Value);
@@ -185,35 +210,9 @@ public class DrawningBoat
         g.DrawLine(pen, _startPosX.Value, _startPosY.Value, _startPosX.Value, _startPosY.Value + 49);
 
         //внутренности круисера
-        
+
         g.DrawRectangle(pen, _startPosX.Value + 25, _startPosY.Value + 10, 80, 30);
-        g.FillRectangle(additionalBrush, _startPosX.Value + 25, _startPosY.Value + 10, 80, 30);
-
-
-  
-
-        if (EntityBoat.Motor)
-        {
-            g.FillRectangle(motorBrush, _startPosX.Value - 3, _startPosY.Value + 15, 20, 17);
-            
-        }
-
-        if (EntityBoat.Oars)
-        {
-            g.DrawEllipse(pen, _startPosX.Value + 45, _startPosY.Value - 15, 10, 13);
-            g.FillEllipse(oarsBrush, _startPosX.Value + 45, _startPosY.Value - 15, 10, 13);
-            g.FillRectangle(motorBrush, _startPosX.Value + 49, _startPosY.Value - 1 , 2, 20);
-
-            g.DrawEllipse(pen, _startPosX.Value + 45, _startPosY.Value + 48, 10, 13);
-            g.FillEllipse(oarsBrush, _startPosX.Value + 45, _startPosY.Value + 48, 10, 13);
-            g.FillRectangle(motorBrush, _startPosX.Value + 49, _startPosY.Value + 30, 2, 20);
-        }
-
-        if (EntityBoat.Glass)
-        {
-            g.FillRectangle(glassBrush, _startPosX.Value + 100, _startPosY.Value + 7, 10, 36);
-
-
-        }
+   
     }
 }
+    

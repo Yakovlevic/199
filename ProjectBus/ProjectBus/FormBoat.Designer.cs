@@ -1,5 +1,4 @@
-﻿
-namespace ProjectBoat
+﻿namespace ProjectBoat
 {
     partial class FormBoat
     {
@@ -30,25 +29,29 @@ namespace ProjectBoat
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormBoat));
-            pictureBox1 = new PictureBox();
+            pictureBoxBoat = new PictureBox();
             button1 = new Button();
             buttonUp = new Button();
             buttonDown = new Button();
             buttonRight = new Button();
             buttonLeft = new Button();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            comboBoxStrategy = new ComboBox();
+            buttonCretaeBoat = new Button();
+            buttonStrategyStep = new Button();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxBoat).BeginInit();
             SuspendLayout();
             // 
-            // pictureBox1
+            // pictureBoxBoat
             // 
-            pictureBox1.Dock = DockStyle.Fill;
-            pictureBox1.Location = new Point(0, 0);
-            pictureBox1.Margin = new Padding(3, 2, 3, 2);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(700, 338);
-            pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
-            pictureBox1.TabIndex = 0;
-            pictureBox1.TabStop = false;
+            pictureBoxBoat.Dock = DockStyle.Fill;
+            pictureBoxBoat.Location = new Point(0, 0);
+            pictureBoxBoat.Margin = new Padding(3, 2, 3, 2);
+            pictureBoxBoat.Name = "pictureBoxBoat";
+            pictureBoxBoat.Size = new Size(700, 338);
+            pictureBoxBoat.SizeMode = PictureBoxSizeMode.AutoSize;
+            pictureBoxBoat.TabIndex = 0;
+            pictureBoxBoat.TabStop = false;
+            pictureBoxBoat.Click += pictureBoxBoat_Click;
             // 
             // button1
             // 
@@ -56,9 +59,9 @@ namespace ProjectBoat
             button1.Location = new Point(10, 307);
             button1.Margin = new Padding(3, 2, 3, 2);
             button1.Name = "button1";
-            button1.Size = new Size(82, 22);
+            button1.Size = new Size(186, 22);
             button1.TabIndex = 1;
-            button1.Text = "создать";
+            button1.Text = "создать катер";
             button1.UseVisualStyleBackColor = true;
             button1.Click += ButtonCreateBoat_Click;
             // 
@@ -114,34 +117,75 @@ namespace ProjectBoat
             buttonLeft.UseVisualStyleBackColor = true;
             buttonLeft.Click += ButtonMove_Click;
             // 
+            // comboBoxStrategy
+            // 
+            comboBoxStrategy.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            comboBoxStrategy.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxStrategy.FormattingEnabled = true;
+            comboBoxStrategy.Items.AddRange(new object[] { "к центру", "к краю" });
+            comboBoxStrategy.Location = new Point(557, 9);
+            comboBoxStrategy.Margin = new Padding(3, 2, 3, 2);
+            comboBoxStrategy.Name = "comboBoxStrategy";
+            comboBoxStrategy.Size = new Size(133, 23);
+            comboBoxStrategy.TabIndex = 6;
+            // 
+            // buttonCretaeBoat
+            // 
+            buttonCretaeBoat.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            buttonCretaeBoat.Location = new Point(210, 308);
+            buttonCretaeBoat.Margin = new Padding(3, 2, 3, 2);
+            buttonCretaeBoat.Name = "buttonCretaeBoat";
+            buttonCretaeBoat.Size = new Size(186, 22);
+            buttonCretaeBoat.TabIndex = 7;
+            buttonCretaeBoat.Text = "создать лодку";
+            buttonCretaeBoat.UseVisualStyleBackColor = true;
+            buttonCretaeBoat.Click += buttonCretaeBoat_Click;
+            // 
+            // buttonStrategyStep
+            // 
+            buttonStrategyStep.Location = new Point(607, 34);
+            buttonStrategyStep.Margin = new Padding(3, 2, 3, 2);
+            buttonStrategyStep.Name = "buttonStrategyStep";
+            buttonStrategyStep.Size = new Size(82, 22);
+            buttonStrategyStep.TabIndex = 8;
+            buttonStrategyStep.Text = "шаг";
+            buttonStrategyStep.UseVisualStyleBackColor = true;
+            buttonStrategyStep.Click += ButtonStrategyStep_Click;
+            // 
             // FormBoat
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(700, 338);
+            Controls.Add(buttonStrategyStep);
+            Controls.Add(buttonCretaeBoat);
+            Controls.Add(comboBoxStrategy);
             Controls.Add(buttonLeft);
             Controls.Add(buttonRight);
             Controls.Add(buttonDown);
             Controls.Add(buttonUp);
             Controls.Add(button1);
-            Controls.Add(pictureBox1);
+            Controls.Add(pictureBoxBoat);
             Margin = new Padding(3, 2, 3, 2);
             Name = "FormBoat";
             Text = "FormBoat";
-            //Load += this.FormBoat_Load_1;
+            Load += FormBoat_Load;
             Click += ButtonMove_Click;
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxBoat).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private PictureBox pictureBox1;
+        private PictureBox pictureBoxBoat;
         private Button button1;
         private Button buttonUp;
         private Button buttonDown;
         private Button buttonRight;
         private Button buttonLeft;
+        private ComboBox comboBoxStrategy;
+        private Button buttonCretaeBoat;
+        private Button buttonStrategyStep;
     }
 }
