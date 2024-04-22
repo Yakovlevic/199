@@ -30,13 +30,11 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormBoat));
             pictureBoxBoat = new PictureBox();
-            button1 = new Button();
             buttonUp = new Button();
             buttonDown = new Button();
             buttonRight = new Button();
             buttonLeft = new Button();
             comboBoxStrategy = new ComboBox();
-            buttonCretaeBoat = new Button();
             buttonStrategyStep = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBoxBoat).BeginInit();
             SuspendLayout();
@@ -52,18 +50,6 @@
             pictureBoxBoat.TabIndex = 0;
             pictureBoxBoat.TabStop = false;
             pictureBoxBoat.Click += pictureBoxBoat_Click;
-            // 
-            // button1
-            // 
-            button1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            button1.Location = new Point(10, 307);
-            button1.Margin = new Padding(3, 2, 3, 2);
-            button1.Name = "button1";
-            button1.Size = new Size(186, 22);
-            button1.TabIndex = 1;
-            button1.Text = "создать катер";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += ButtonCreateBoat_Click;
             // 
             // buttonUp
             // 
@@ -129,18 +115,6 @@
             comboBoxStrategy.Size = new Size(133, 23);
             comboBoxStrategy.TabIndex = 6;
             // 
-            // buttonCretaeBoat
-            // 
-            buttonCretaeBoat.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            buttonCretaeBoat.Location = new Point(210, 308);
-            buttonCretaeBoat.Margin = new Padding(3, 2, 3, 2);
-            buttonCretaeBoat.Name = "buttonCretaeBoat";
-            buttonCretaeBoat.Size = new Size(186, 22);
-            buttonCretaeBoat.TabIndex = 7;
-            buttonCretaeBoat.Text = "создать лодку";
-            buttonCretaeBoat.UseVisualStyleBackColor = true;
-            buttonCretaeBoat.Click += buttonCretaeBoat_Click;
-            // 
             // buttonStrategyStep
             // 
             buttonStrategyStep.Location = new Point(607, 34);
@@ -158,18 +132,15 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(700, 338);
             Controls.Add(buttonStrategyStep);
-            Controls.Add(buttonCretaeBoat);
             Controls.Add(comboBoxStrategy);
             Controls.Add(buttonLeft);
             Controls.Add(buttonRight);
             Controls.Add(buttonDown);
             Controls.Add(buttonUp);
-            Controls.Add(button1);
             Controls.Add(pictureBoxBoat);
             Margin = new Padding(3, 2, 3, 2);
             Name = "FormBoat";
             Text = "FormBoat";
-            Load += FormBoat_Load;
             Click += ButtonMove_Click;
             ((System.ComponentModel.ISupportInitialize)pictureBoxBoat).EndInit();
             ResumeLayout(false);
@@ -179,13 +150,11 @@
         #endregion
 
         private PictureBox pictureBoxBoat;
-        private Button button1;
         private Button buttonUp;
         private Button buttonDown;
         private Button buttonRight;
         private Button buttonLeft;
         private ComboBox comboBoxStrategy;
-        private Button buttonCretaeBoat;
         private Button buttonStrategyStep;
     }
 }

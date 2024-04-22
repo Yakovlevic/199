@@ -38,57 +38,6 @@ namespace ProjectBoat
         }
 
         /// <summary>
-        /// Создание объекта класса-перемещения
-        /// </summary>
-        /// <param name="type">Тип создаваемого объекта</param>
-        private void CreateObject(string type)
-        {
-            Random random = new();
-            switch (type)
-            {
-                case nameof(DrawningBoat):
-                    _drawningBoat = new DrawningBoat(random.Next(100, 300),
-                    random.Next(1000, 3000),
-                    Color.FromArgb(random.Next(0, 256),
-                    random.Next(0, 256), random.Next(0, 256)));
-                    break;
-                case nameof(DrawningMBoat):
-                    _drawningBoat = new DrawningMBoat(random.Next(100,
-                    300), random.Next(1000, 3000),
-                    Color.FromArgb(random.Next(0, 256),
-                    random.Next(0, 256), random.Next(0, 256)),
-                    Color.FromArgb(random.Next(0, 256),
-                    random.Next(0, 256), random.Next(0, 256)),
-                    Convert.ToBoolean(random.Next(0, 2)),
-                    Convert.ToBoolean(random.Next(0, 2)), Convert.ToBoolean(random.Next(0, 2)));
-                    break;
-                default:
-                    return;
-            }
-            _drawningBoat.SetPictureSize(pictureBoxBoat.Width,
-            pictureBoxBoat.Height);
-            _drawningBoat.SetPosition(random.Next(10, 100), random.Next(10, 100));
-            _strategy = null;
-            comboBoxStrategy.Enabled = true;
-            Draw();
-        }
-
-        /// <summary>
-        /// Обработка нажатия кнопки "Создать военный крейсер"
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ButtonCreateBoat_Click(object sender, EventArgs e) => CreateObject(nameof(DrawningMBoat));
-
-        /// <summary>
-        /// Обработка нажатия кнопки "Создать крейсер"
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void buttonCretaeBoat_Click(object sender, EventArgs e) => CreateObject(nameof(DrawningBoat));
-
-
-        /// <summary>
         /// Перемещение объекта по форме (нажатие кнопок навигации)
         /// </summary>
         /// <param name="sender"></param>
@@ -168,11 +117,6 @@ namespace ProjectBoat
                 comboBoxStrategy.Enabled = true;
                 _strategy = null;
             }
-        }
-
-        private void FormBoat_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void pictureBoxBoat_Click(object sender, EventArgs e)
