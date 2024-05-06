@@ -35,15 +35,20 @@ namespace ProjectBoat.Drawnings
             Brush motorBrush = new SolidBrush(Color.Black);
             Brush glassBrush = new SolidBrush(Color.Blue);
             Brush oarsBrush = new HatchBrush(HatchStyle.ZigZag, Color.FromArgb(163, 163, 163));
-            
+            Pen pen2 = new(Color.Black, 2);
+            Brush Brush = new SolidBrush(entityMBoat.AdditionalColor);
+
+            g.FillRectangle(Brush, _startPosX.Value + 25, _startPosY.Value + 10, 80, 30);
+
+            g.DrawRectangle(pen2, _startPosX.Value + 25, _startPosY.Value + 10, 80, 30);
 
             base.DrawTransport(g);
 
-            if (entityMBoat.Motor)
-            {
-                g.FillRectangle(motorBrush, _startPosX.Value - 3, _startPosY.Value + 15, 20, 17);
+            
+            
+            g.FillRectangle(motorBrush, _startPosX.Value - 3, _startPosY.Value + 15, 20, 17);
 
-            }
+           
 
             if (entityMBoat.Oars)
             {

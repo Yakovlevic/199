@@ -196,22 +196,29 @@ public class DrawningBoat
             return;
         }
         Pen pen = new(EntityBoat.BodyColor, 2);
+        Pen pen2 = new(Color.Black, 2);
         Brush motorBrush = new SolidBrush(Color.Black);
         Brush glassBrush = new SolidBrush(Color.Blue);
-        
+        Brush Brush = new SolidBrush(EntityBoat.BodyColor);
+
+
 
         //границы круисера
-        g.DrawLine(pen, _startPosX.Value, _startPosY.Value, _startPosX.Value + 105, _startPosY.Value);
-        g.DrawLine(pen, _startPosX.Value + 105, _startPosY.Value, _startPosX.Value + 147, _startPosY.Value + 24);
+        Point[] points = { new Point(_startPosX.Value, _startPosY.Value), new Point(_startPosX.Value + 105, _startPosY.Value), new Point( _startPosX.Value + 147, _startPosY.Value + 24), new Point(_startPosX.Value + 105, _startPosY.Value + 49), new Point(_startPosX.Value , _startPosY.Value + 49), new Point(_startPosX.Value, _startPosY.Value ) };
+        g.FillPolygon(Brush, points);
+        g.DrawPolygon(pen2, points);
 
-        g.DrawLine(pen, _startPosX.Value, _startPosY.Value + 49, _startPosX.Value + 105, _startPosY.Value + 49);
-        g.DrawLine(pen, _startPosX.Value + 105, _startPosY.Value + 49, _startPosX.Value + 147, _startPosY.Value + 24);
+        //g.DrawLine(pen, _startPosX.Value, _startPosY.Value, _startPosX.Value + 105, _startPosY.Value);
+        // g.DrawLine(pen, _startPosX.Value + 105, _startPosY.Value, _startPosX.Value + 147, _startPosY.Value + 24);
 
-        g.DrawLine(pen, _startPosX.Value, _startPosY.Value, _startPosX.Value, _startPosY.Value + 49);
+        // g.DrawLine(pen, _startPosX.Value, _startPosY.Value + 49, _startPosX.Value + 105, _startPosY.Value + 49);
+        // g.DrawLine(pen, _startPosX.Value + 105, _startPosY.Value + 49, _startPosX.Value + 147, _startPosY.Value + 24);
+
+        //g.DrawLine(pen, _startPosX.Value, _startPosY.Value, _startPosX.Value, _startPosY.Value + 49);
 
         //внутренности круисера
 
-        g.DrawRectangle(pen, _startPosX.Value + 25, _startPosY.Value + 10, 80, 30);
+        g.DrawRectangle(pen2, _startPosX.Value + 25, _startPosY.Value + 10, 80, 30);
    
     }
 }
